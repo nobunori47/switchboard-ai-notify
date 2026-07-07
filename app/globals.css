@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+  --font-body: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  --font-mono: "SF Mono", "Consolas", "Menlo", monospace;
+}
+
+body {
+  background-color: #14161c;
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(201, 162, 75, 0.06), transparent 40%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+  color: #EDEAE2;
+}
+
+/* 配電盤の「差し込み口」を思わせる丸いジャック装飾 */
+.jack {
+  position: relative;
+}
+.jack::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  margin-right: 8px;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.35);
+}
+
+/* パッチコード(接続線)。カテゴリ色は各コンポーネント側でinline styleにより指定 */
+.patch-cord {
+  height: 2px;
+  border-radius: 2px;
+  position: relative;
+}
+.patch-cord::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: inherit;
+}

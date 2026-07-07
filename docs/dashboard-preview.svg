@@ -1,0 +1,124 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Sans, sans-serif">
+  <rect width="1200" height="820" fill="#14161c"/>
+
+  <!-- NavBar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1B1E26" stroke="#343A48" stroke-width="1"/>
+  <circle cx="40" cy="32" r="4" fill="#C9A24B"/>
+  <text x="56" y="37" fill="#EDEAE2" font-size="18" font-weight="700" letter-spacing="1">SWITCHBOARD</text>
+  <text x="230" y="37" fill="#9CA3B0" font-size="12">/ AI Multi-Channel Notification Hub</text>
+  <text x="980" y="37" fill="#9CA3B0" font-size="13">管制盤</text>
+  <text x="1040" y="37" fill="#9CA3B0" font-size="13">問い合わせ一覧</text>
+  <text x="1130" y="37" fill="#9CA3B0" font-size="13">通知ログ</text>
+
+  <!-- Header -->
+  <text x="48" y="120" fill="#C9A24B" font-size="12" letter-spacing="2">CONTROL BOARD</text>
+  <text x="48" y="152" fill="#EDEAE2" font-size="26" font-weight="700">問い合わせ管制盤</text>
+  <text x="48" y="178" fill="#9CA3B0" font-size="13">メール・LINEから届いた問い合わせを、AIがカテゴリ判定し、Slackへ自動で繋ぎ替えます。</text>
+
+  <!-- Stat cards -->
+  <g>
+    <rect x="48" y="200" width="260" height="90" rx="4" fill="#232733" stroke="#343A48"/>
+    <circle cx="70" cy="222" r="3" fill="#5B7FA6"/>
+    <text x="82" y="226" fill="#9CA3B0" font-size="10" letter-spacing="1">総受信件数</text>
+    <text x="70" y="266" fill="#EDEAE2" font-size="30" font-weight="700" font-family="monospace">758</text>
+  </g>
+  <g>
+    <rect x="322" y="200" width="260" height="90" rx="4" fill="#232733" stroke="#343A48"/>
+    <circle cx="344" cy="222" r="3" fill="#C1443C"/>
+    <text x="356" y="226" fill="#9CA3B0" font-size="10" letter-spacing="1">緊急件数</text>
+    <text x="344" y="266" fill="#EDEAE2" font-size="30" font-weight="700" font-family="monospace">12</text>
+  </g>
+  <g>
+    <rect x="596" y="200" width="260" height="90" rx="4" fill="#232733" stroke="#343A48"/>
+    <circle cx="618" cy="222" r="3" fill="#4F8A7B"/>
+    <text x="630" y="226" fill="#9CA3B0" font-size="10" letter-spacing="1">通知成功率</text>
+    <text x="618" y="266" fill="#EDEAE2" font-size="30" font-weight="700" font-family="monospace">99.6%</text>
+  </g>
+  <g>
+    <rect x="870" y="200" width="282" height="90" rx="4" fill="#232733" stroke="#343A48"/>
+    <circle cx="892" cy="222" r="3" fill="#C1443C"/>
+    <text x="904" y="226" fill="#9CA3B0" font-size="10" letter-spacing="1">失敗件数</text>
+    <text x="892" y="266" fill="#EDEAE2" font-size="30" font-weight="700" font-family="monospace">1</text>
+  </g>
+
+  <!-- Flow diagram panel -->
+  <rect x="48" y="312" width="1104" height="200" rx="4" fill="#232733" stroke="#343A48"/>
+  <text x="72" y="342" fill="#EDEAE2" font-size="14" font-weight="700">結線図 — 今どこを流れているか</text>
+  <text x="1080" y="342" fill="#9CA3B0" font-size="11">リアルタイム</text>
+
+  <!-- nodes -->
+  <g font-size="11" fill="#EDEAE2">
+    <rect x="90" y="368" width="90" height="42" rx="4" fill="#1B1E26" stroke="#5B7FA6" stroke-width="1.5"/>
+    <text x="135" y="386" text-anchor="middle" font-weight="700">Gmail</text>
+    <text x="135" y="400" text-anchor="middle" fill="#9CA3B0" font-size="9">ブリッジ経由</text>
+
+    <rect x="90" y="440" width="90" height="42" rx="4" fill="#1B1E26" stroke="#5B7FA6" stroke-width="1.5"/>
+    <text x="135" y="458" text-anchor="middle" font-weight="700">LINE</text>
+    <text x="135" y="472" text-anchor="middle" fill="#9CA3B0" font-size="9">公式アカウント</text>
+
+    <path d="M180 389 C 260 389, 260 425, 340 425" stroke="#5B7FA6" fill="none" stroke-width="2" opacity="0.75"/>
+    <path d="M180 461 C 260 461, 260 425, 340 425" stroke="#5B7FA6" fill="none" stroke-width="2" opacity="0.75"/>
+
+    <rect x="340" y="404" width="90" height="42" rx="4" fill="#1B1E26" stroke="#C9A24B" stroke-width="1.5"/>
+    <text x="385" y="422" text-anchor="middle" font-weight="700">Queue</text>
+    <text x="385" y="436" text-anchor="middle" fill="#9CA3B0" font-size="9">758件</text>
+
+    <path d="M430 425 C 480 425, 480 425, 540 425" stroke="#C9A24B" fill="none" stroke-width="2" opacity="0.75"/>
+    <rect x="540" y="404" width="90" height="42" rx="4" fill="#1B1E26" stroke="#C9A24B" stroke-width="1.5"/>
+    <text x="585" y="422" text-anchor="middle" font-weight="700">Claude</text>
+    <text x="585" y="436" text-anchor="middle" fill="#9CA3B0" font-size="9">分類・判定</text>
+
+    <path d="M630 415 C 700 415, 700 389, 790 389" stroke="#4F8A7B" fill="none" stroke-width="2" opacity="0.75"/>
+    <path d="M630 435 C 700 435, 700 461, 790 461" stroke="#C1443C" fill="none" stroke-width="2" opacity="0.75"/>
+
+    <rect x="790" y="368" width="100" height="42" rx="4" fill="#1B1E26" stroke="#4F8A7B" stroke-width="1.5"/>
+    <text x="840" y="386" text-anchor="middle" font-weight="700">Slack</text>
+    <text x="840" y="400" text-anchor="middle" fill="#9CA3B0" font-size="9">741件 通知済み</text>
+
+    <rect x="790" y="440" width="100" height="42" rx="4" fill="#1B1E26" stroke="#C1443C" stroke-width="1.5"/>
+    <text x="840" y="458" text-anchor="middle" font-weight="700">LINE Push</text>
+    <text x="840" y="472" text-anchor="middle" fill="#9CA3B0" font-size="9">緊急 12件</text>
+  </g>
+  <text x="72" y="500" fill="#9CA3B0" font-size="10">黄色のコードは通常パス(Headless Cron・1分間隔)、赤いコードは緊急パス(Webhook受信と同一関数内で即時処理)を表しています。</text>
+
+  <!-- Recent list -->
+  <rect x="48" y="530" width="1104" height="260" rx="4" fill="#232733" stroke="#343A48"/>
+  <text x="72" y="562" fill="#EDEAE2" font-size="14" font-weight="700">直近の接続履歴</text>
+  <text x="1090" y="562" fill="#9CA3B0" font-size="11">最新12件</text>
+  <line x1="48" y1="576" x2="1152" y2="576" stroke="#343A48"/>
+
+  <g font-size="12">
+    <text x="72" y="606" fill="#9CA3B0" font-family="monospace" font-size="10">LINE</text>
+    <rect x="140" y="596" width="32" height="2" fill="#C1443C"/>
+    <text x="182" y="606" fill="#EDEAE2">先週入居したばかりですが、エアコンが全く効かず困っています…</text>
+    <rect x="1000" y="596" width="40" height="16" rx="2" fill="#C1443C22"/>
+    <text x="1020" y="608" text-anchor="middle" fill="#C1443C" font-size="10">緊急</text>
+    <rect x="1050" y="596" width="60" height="16" rx="2" fill="#C1443C22"/>
+    <text x="1080" y="608" text-anchor="middle" fill="#C1443C" font-size="10">クレーム</text>
+
+    <line x1="48" y1="626" x2="1152" y2="626" stroke="#343A48"/>
+    <text x="72" y="650" fill="#9CA3B0" font-family="monospace" font-size="10">メール</text>
+    <rect x="140" y="640" width="32" height="2" fill="#4F8A7B"/>
+    <text x="182" y="650" fill="#EDEAE2">2LDKの賃貸物件を探しています。駅から徒歩10分以内で予算8万円…</text>
+    <rect x="1050" y="640" width="52" height="16" rx="2" fill="#4F8A7B22"/>
+    <text x="1076" y="652" text-anchor="middle" fill="#4F8A7B" font-size="10">賃貸</text>
+
+    <line x1="48" y1="670" x2="1152" y2="670" stroke="#343A48"/>
+    <text x="72" y="694" fill="#9CA3B0" font-family="monospace" font-size="10">メール</text>
+    <rect x="140" y="684" width="32" height="2" fill="#5B7FA6"/>
+    <text x="182" y="694" fill="#EDEAE2">所有しているマンションの売却を検討しています。査定をお願い…</text>
+    <rect x="1050" y="684" width="52" height="16" rx="2" fill="#5B7FA622"/>
+    <text x="1076" y="696" text-anchor="middle" fill="#5B7FA6" font-size="10">売買</text>
+
+    <line x1="48" y1="714" x2="1152" y2="714" stroke="#343A48"/>
+    <text x="72" y="738" fill="#9CA3B0" font-family="monospace" font-size="10">LINE</text>
+    <rect x="140" y="728" width="32" height="2" fill="#C9A24B"/>
+    <text x="182" y="738" fill="#EDEAE2">来週の土曜日に、駅前の新築マンションを内見したいです。</text>
+    <rect x="1050" y="728" width="52" height="16" rx="2" fill="#C9A24B22"/>
+    <text x="1076" y="740" text-anchor="middle" fill="#C9A24B" font-size="10">内見</text>
+  </g>
+
+  <text x="600" y="812" text-anchor="middle" fill="#5B6474" font-size="11">
+    ※ これはデザイン検証用のプレビュー図です(実機スクリーンショットではありません)。実データはデモモードで確認できます。
+  </text>
+</svg>
