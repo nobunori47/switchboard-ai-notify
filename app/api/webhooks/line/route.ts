@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { createServerSupabase } from "@/lib/supabase";
 import { isUrgentCandidate } from "@/lib/classify";
 import { handleUrgentCandidate } from "@/lib/urgent-handler";
+import { timingSafeStringEqual } from "@/lib/secure-compare";
 
 export async function POST(req: Request) {
   const signature = req.headers.get("x-line-signature");
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
     return new Response("LINE_CHANNEL_SECRET is not configured", { status: 500 });
   }
   const expected = crypto.createHmac("sha256", secret).update(body).digest("base64");
-  if (signature !== expected) {
+  if (!signature || !timingSafeStringEqual(signature, expected)) {
     return new Response("Unauthorized: signature mismatch", { status: 401 });
   }
 

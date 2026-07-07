@@ -2,6 +2,7 @@ import { createServerSupabase } from "@/lib/supabase";
 import { classifyWithClaude } from "@/lib/classify";
 import { postToSlack } from "@/lib/slack";
 import { recordNotificationResult } from "@/lib/notify-and-track";
+import { timingSafeStringEqual } from "@/lib/secure-compare";
 
 /**
  * Vercel Cron から 1分ごとに呼び出される想定(vercel.jsonのschedule参照)。
@@ -15,7 +16,8 @@ import { recordNotificationResult } from "@/lib/notify-and-track";
  */
 export async function GET(req: Request) {
   const authHeader = req.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  const expected = `Bearer ${process.env.CRON_SECRET ?? ""}`;
+  if (!authHeader || !timingSafeStringEqual(authHeader, expected)) {
     return new Response("Unauthorized", { status: 401 });
   }
 

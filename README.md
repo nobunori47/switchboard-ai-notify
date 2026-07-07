@@ -108,7 +108,7 @@ Slack通知 → 成功時のみ status=notified
 
 ## Design Decisions
 
-- **Webhook署名検証**: LINEはHMAC-SHA256、Gmail(ブリッジ経由)は共有シークレットで、なりすましリクエストを拒否
+- **Webhook署名検証**: LINEはHMAC-SHA256、Gmail(ブリッジ経由)は共有シークレットで、なりすましリクエストを拒否。比較には`crypto.timingSafeEqual`を使い、タイミング攻撃を防止
 - **`external_id`による冪等性**: Webhookの再送で同じ問い合わせを二重処理・二重通知しないよう、DB側でUNIQUE制約を強制
 - **緊急パスの分離**: キーワード一次判定 → Claudeでの再確認という二段階を経て、Webhook受信と同一関数内で完結させることで5分以内のSLAを達成
 - **Headless Cron採用**: 常時稼働のワーカーサーバーを持たず、1分間隔のバッチ処理で通常パスを消化。低予算案件でも月額数千円台の運用コストに抑制
@@ -270,11 +270,16 @@ npm run dev
 ### 7. Vercelへデプロイ
 
 GitHubリポジトリにpushし、Vercelで連携するだけです。
-`vercel.json` の設定により、デプロイ後は自動でCronジョブ(1分間隔)が有効になります。
+`vercel.json` の設定により、デプロイ後は自動でCronジョブが有効になります。
 環境変数はVercelのプロジェクト設定にも同じ値を登録してください。
 
-> **Vercelプランについて**: Hobbyプランではcronの実行頻度に制限がある場合があります。
-> 本番運用する場合はProプラン以上を推奨します。
+> **重要 — Vercel Hobbyプランのcron制限について**
+> Hobby(無料)プランでは、cronジョブは**1日1回まで**しか許可されません。
+> 本来の設計(Headlessモードによる1分間隔の巡回)を体現するには、Vercel Proプラン
+> (`schedule: "* * * * *"`)が必要です。
+> このリポジトリの `vercel.json` は、Hobbyプランでもデプロイが通るよう
+> `schedule: "0 9 * * *"`(毎日1回)に調整しています。1分間隔で動かす場合は、
+> Proプランへアップグートした上で `vercel.json` の schedule を `* * * * *` に戻してください。
 
 ## Gmail連携についての補足
 

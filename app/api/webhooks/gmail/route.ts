@@ -1,6 +1,7 @@
 import { createServerSupabase } from "@/lib/supabase";
 import { isUrgentCandidate } from "@/lib/classify";
 import { handleUrgentCandidate } from "@/lib/urgent-handler";
+import { timingSafeStringEqual } from "@/lib/secure-compare";
 
 /**
  * Gmail連携について:
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
   if (!expectedSecret) {
     return new Response("GMAIL_BRIDGE_SECRET is not configured", { status: 500 });
   }
-  if (providedSecret !== expectedSecret) {
+  if (!providedSecret || !timingSafeStringEqual(providedSecret, expectedSecret)) {
     return new Response("Unauthorized", { status: 401 });
   }
 
