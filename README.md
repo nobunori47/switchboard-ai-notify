@@ -290,6 +290,14 @@ Gmail APIの本格的なpush通知(Cloud Pub/Sub経由)はOAuth・Watch登録・
 認証はGmail側の署名ではなく、共有シークレット(`GMAIL_BRIDGE_SECRET`)で行います。
 
 ## 今後の拡張(Phase 2として切り分けた機能)
+## 運用ドキュメント
+
+低予算案件でも継続運用・引き継ぎができるよう、以下のドキュメントを用意しています。
+
+- [運用マニュアル](docs/operations-manual.md) — クライアント向け、日常の確認方法と障害時の対応手順
+- [APIキーローテーション手順](docs/api-key-rotation.md) — 開発者向け、キー漏洩時の再発行・反映手順
+- [監視用SQL集](docs/monitoring-queries.sql) — 追加コストなしで実施できるSupabaseベースの監視クエリ
+- [Phase 2提案書](docs/phase2-proposal.md) — 電話自動化への継続提案
 
 MVPの範囲を守るため、以下は意図的に対象外としています。
 
